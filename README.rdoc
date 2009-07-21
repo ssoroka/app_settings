@@ -1,0 +1,7 @@
+= app_settings
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Steven Soroka. See LICENSE for details.
