@@ -1,0 +1,48 @@
+# Settings in defaults: affect all environments. settings in other environments override the
+# defaults setting erb is allowed in this file. eg. test_value: <%= 3 * 12 %> Keep in mind, when
+# using erb, it's only evaluated ONCE when the application loads! (at least, in production).
+defaults: &defaults
+  domains:
+    www: <%= ENV['TMPDIR'].to_s.match(/passenger/) ? 'AppSettings.local' : '0.0.0.0:3000' %>
+    mail: localhost
+    legacy: www.AppSettings.com
+    images: images.AppSettings.com
+
+  # settings can reference other settings like so:
+  from_address: help@[%= AppSettings.domains[:mail] %]
+  attachment_path: public/images
+
+  # This is at least until we have a dedicated exception sender.  Or always; whatever.
+  exception_sender: rails@AppSettings.com
+  
+  items_per_page: 50
+
+  # git commit number that HEAD currently points to.  Only evaluated once on server start
+  git_head: <%= `git log --abbrev=8 -1 --pretty=format:"%h"` %>
+
+  google_maps_api_keys:
+    0.0.0.0: key here
+    localhost: key here
+
+  request_history_size: 4
+
+development: &development
+  <<: *defaults
+
+test:
+  <<: *defaults
+  domains:
+    www: 0.0.0.0:3001
+    mail: localhost
+    legacy: www.AppSettings.com
+    images: images.AppSettings.com
+
+production: &production
+  <<: *defaults
+  google_maps_api_keys: # Each subdomain requires its own key, I do believe
+    www.AppSettings.com: key_here
+  domains:
+    www: www.AppSettings.com
+    mail: AppSettings.com
+    legacy: www1.AppSettings.com
+    images: images.AppSettings.com

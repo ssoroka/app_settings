@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "app_settings"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{}
     gem.email = "ssoroka78@gmail.com"
     gem.homepage = "http://github.com/ssoroka/app_settings"
     gem.authors = ["Steven Soroka"]

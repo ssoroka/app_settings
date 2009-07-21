@@ -1,7 +1,24 @@
 = app_settings
 
-Description goes here.
+Central place to keep settings for your Rails app that aren't related to the database, along with an easy class to reference them.
 
+== Install
+
+sudo gem install ssoroka-app_settings
+rake app_settings:install_config
+
+== Usage
+
+See example_config/app_settings.yml for an example yml file.
+
+    AppSettings['google_maps_api_keys/localhost']
+    
+    AppSettings['domains/legacy']
+    
+    AppSettings['from_address']
+    
+    AppSettings.from_address
+ 
 == Copyright
 
 Copyright (c) 2009 Steven Soroka. See LICENSE for details.
