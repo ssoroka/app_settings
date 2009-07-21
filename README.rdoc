@@ -4,8 +4,8 @@ Central place to keep settings for your Rails app that aren't related to the dat
 
 == Install
 
-sudo gem install ssoroka-app_settings
-rake app_settings:install_config
+    sudo gem install ssoroka-app_settings
+    rake app_settings:install_config
 
 == Usage
 
