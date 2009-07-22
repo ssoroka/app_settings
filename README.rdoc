@@ -1,6 +1,6 @@
 = app_settings
 
-Central place to keep settings for your Rails app that aren't related to the database, along with an easy class to reference them.
+Simple wrapper for YAML config files for Rails apps and gems
 
 == Install
 
@@ -9,16 +9,39 @@ Central place to keep settings for your Rails app that aren't related to the dat
 
 == Usage
 
-See example_config/app_settings.yml for an example yml file.
+=== Usage with Rails
 
-    AppSettings['google_maps_api_keys/localhost']
+in an initializer, put:
+
+    $settings = AppSettings.new(File.join(Rails.root, 'config', 'app_settings.yml'))
+
+Then anywhere in your app you can access the settings with:
+
+    $settings['users/tim/user_name']
+    $settings['users/tim/password']
+
+Or whatever applies for your config file.
+
+See example_config/example_for_rails.yml for an example yml file, here's some code examples to match:
+
+    $settings['google_maps_api_keys/localhost']
     
-    AppSettings['domains/legacy']
+    $settings['domains/legacy']
     
-    AppSettings['from_address']
+    $settings['from_address']
     
-    AppSettings.from_address
- 
+    $settings.from_address
+    
+=== Usage with Gems or Plugins
+
+    # if user_config_file_path doesn't exist, default_config_file_path will be used.
+    @settings = AppSettings.new(user_config_file_path, default_config_file_path)
+    @settings['hoptoad/auth_token']
+
+=== ERB in config files
+
+The config files support ERB: <%= %>
+
 == Copyright
 
 Copyright (c) 2009 Steven Soroka. See LICENSE for details.

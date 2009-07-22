@@ -1,11 +1,12 @@
 namespace :app_settings do
   desc "Install the default config file"
   task :install_config => [:environment] do
-    if File.exist?(AppSettings::APP_SETTINGS_FILE)
-      puts "#{AppSettings::APP_SETTINGS_FILE} already exists.  Remove it first if you want to overwrite it."
+    dest_file = File.join(Rails.root, 'config', 'app_settings.yml')
+    if File.exist?(dest_file)
+      puts "#{dest_file} already exists.  Remove it first if you want to overwrite it."
     else
-      puts "installing default config file to #{AppSettings::APP_SETTINGS_FILE}"
-      FileUtils.mv(File.join(File.dirname(__FILE__), %w(.. example_config app_settings.yml)), AppSettings::APP_SETTINGS_FILE)
+      puts "installing default config file to #{dest_file}"
+      FileUtils.mv(File.join(File.dirname(__FILE__), %w(.. example_config example_for_rails.yml)), dest_file)
     end
   end
 end

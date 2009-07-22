@@ -9,7 +9,7 @@ defaults: &defaults
     images: images.AppSettings.com
 
   # settings can reference other settings like so:
-  from_address: help@[%= AppSettings.domains[:mail] %]
+  from_address: help@AppSettings.com
   attachment_path: public/images
 
   # This is at least until we have a dedicated exception sender.  Or always; whatever.

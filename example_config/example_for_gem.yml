@@ -1,0 +1,8 @@
+# ERB is allowed in this file. eg. test_value: <%= 3 * 12 %> Keep in mind, when
+# using ERB, it's only evaluated ONCE when the application loads!
+twitter:
+  user: frank
+  password: orange
+  sleep: 300
+bitly:
+  api: abc123
